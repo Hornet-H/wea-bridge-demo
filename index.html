@@ -37,7 +37,6 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
     function typeSelectedFunc (){
 
     }
-    var that = this;
     setupWKWebViewJavascriptBridge(function(bridge) {
          function printlog(message, data, type) {
         var log = document.getElementById('log')
@@ -103,7 +102,7 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
 
         var jumpConversation = document.getElementById('jumpConversation').appendChild(document.createElement('button'))
         jumpConversation.class = 'custombutton'
-        jumpConversation.innerHTML = 'jump'
+        jumpConversation.innerHTML = 'jumpConversation'
 
         jumpConversation.onclick = function(e) {
             // location.href='https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF'
@@ -130,13 +129,14 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
         <div class='custombutton' id='close'></div>
         <div class='custombutton' id='openSafari'></div>
         <br/>
-        <p>请输入用户id 完成之后点击 jump 按钮</p>
+        <p>请输入用户id 并选择会话类型 完成之后点击 jump 按钮</p>
         <input class="input_text" id="input_cid"/>
-        <p>请选择会话类型</p>
-        <select id="selectType">
+        <p>请选择会话类型 tip: private 表示联系人 group表示群组 </p>
+        <select style="width: 150px;height: 44px" id="selectType">
             <option value="private">private</option>
             <option value="group">group</option>
         </select>
+        <div style="height: 10px"></div>
         <div class='custombutton' id='jumpConversation'></div>
         <br/>
     </div>
