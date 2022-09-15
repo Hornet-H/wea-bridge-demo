@@ -95,9 +95,9 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
             // location.href='https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF'
             e.preventDefault()
             let parms = {'url': 'https://docs.google.com/spreadsheets/d/1Kxc8qgcjAalPK_76sWhfalDtteHg_yj1xYRSh1pUjr0/edit#gid=108224508'}
-            that.printlog('JS -> Native: action: openSafari',parms,'logLine_JS')
+            printlog('JS -> Native: action: openSafari',parms,'logLine_JS')
             bridge.callHandler('openSafari', parms, function(response) {
-                that.printlog('JS remove client token response', response, 'js')
+                printlog('JS remove client token response', response, 'js')
             })
         }
 
@@ -115,9 +115,9 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
             }
             e.preventDefault()
             let parms = {'cid': cid,'type': type}
-            that.printlog('JS -> Native: action: jumpConversation',parms,'logLine_JS')
+            printlog('JS -> Native: action: jumpConversation',parms,'logLine_JS')
             bridge.callHandler('jumpConversation', parms, function(response) {
-                that.printlog('JS remove client token response', response, 'js')
+                printlog('JS remove client token response', response, 'js')
             })
         }
 
@@ -130,7 +130,7 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
         <div class='custombutton' id='close'></div>
         <div class='custombutton' id='openSafari'></div>
         <br/>
-        <p>请输入用户id 完成之后点击 jumpConversation 按钮</p>
+        <p>请输入用户id 完成之后点击 jump 按钮</p>
         <input class="input_text" id="input_cid"/>
         <p>请选择会话类型</p>
         <select id="selectType">
