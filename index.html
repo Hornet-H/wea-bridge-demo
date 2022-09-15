@@ -34,6 +34,9 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
         window.WKWVJBCallbacks = [callback];
         window.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(null)
     }
+    function typeSelectedFunc (){
+
+    }
     var that = this;
     setupWKWebViewJavascriptBridge(function(bridge) {
          function printlog(message, data, type) {
@@ -84,13 +87,58 @@ button { margin:0 3px 10px; font-size:14px; border: 2px solid #000000; }
           printlog('JS remove client token response', response, 'js')
         })
       }
+
+        var openSafari = document.getElementById('openSafari').appendChild(document.createElement('button'))
+        openSafari.class = 'custombutton'
+        openSafari.innerHTML = 'openSafari'
+        openSafari.onclick = function(e) {
+            // location.href='https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF'
+            e.preventDefault()
+            let parms = {'url': 'https://docs.google.com/spreadsheets/d/1Kxc8qgcjAalPK_76sWhfalDtteHg_yj1xYRSh1pUjr0/edit#gid=108224508'}
+            that.printlog('JS -> Native: action: openSafari',parms,'logLine_JS')
+            bridge.callHandler('openSafari', parms, function(response) {
+                that.printlog('JS remove client token response', response, 'js')
+            })
+        }
+
+        var jumpConversation = document.getElementById('jumpConversation').appendChild(document.createElement('button'))
+        jumpConversation.class = 'custombutton'
+        jumpConversation.innerHTML = 'jump'
+
+        jumpConversation.onclick = function(e) {
+            // location.href='https://t7.baidu.com/it/u=1819248061,230866778&fm=193&f=GIF'
+            const cid = document.getElementById("input_cid").value;
+            const type = document.getElementById("selectType").value;
+            if(!cid || !type){
+                alert("Please enter value");
+                return;
+            }
+            e.preventDefault()
+            let parms = {'cid': cid,'type': type}
+            that.printlog('JS -> Native: action: jumpConversation',parms,'logLine_JS')
+            bridge.callHandler('jumpConversation', parms, function(response) {
+                that.printlog('JS remove client token response', response, 'js')
+            })
+        }
+
     })
     </script>
     <h1>DEMO</h1>
     <div class="content">
-      <div id='getMiniProgramToken'></div>
-      <div id='removeMiniProgramToken'></div>
-      <div class='custombutton' id='close'></div>
+        <div id='getMiniProgramToken'></div>
+        <div id='removeMiniProgramToken'></div>
+        <div class='custombutton' id='close'></div>
+        <div class='custombutton' id='openSafari'></div>
+        <br/>
+        <p>请输入用户id 完成之后点击 jumpConversation 按钮</p>
+        <input class="input_text" id="input_cid"/>
+        <p>请选择会话类型</p>
+        <select id="selectType">
+            <option value="private">private</option>
+            <option value="group">group</option>
+        </select>
+        <div class='custombutton' id='jumpConversation'></div>
+        <br/>
     </div>
 
     <div id='log'></div>
